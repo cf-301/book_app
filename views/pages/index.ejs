@@ -3,29 +3,28 @@
   <head>
     <link href="/styles/reset.css" rel="stylesheet" type="text/css"/>
     <link href="/styles/base.css" rel="stylesheet" type="text/css"/>
-    <div>
-    Hello World
-    </div>
   </head>
   <body>
-    <header></header>
+    <header>
+      <nav>Best Books!</nav>
+    </header>
     <main>
       <h4>Seach by Title or Author</h4>
       <form action="/searches" method="post">
-        <input type="text" name="search" placeholder="Enter a title or author" required>
-        <fieldset>
+        <input class="box" class="box1" type="text" name="search" placeholder="Enter a title or author" required>
+        <fieldset class="box" class="box2">
           <label for="title">
             <span>Title</span>
             <input type="radio" name="search" value="title" required>
           </label>
         </fieldset>
-        <fieldset>
+        <fieldset class="box" class="box2">
           <label for="author">
             <span>Author</span>
-            <input type="radio" name="search" value="author" required>
+              <input type="radio" name="search" value="author" required>
           </label>
         </fieldset>
-        <button type="submit">Search the Google Books API</button>
+        <button class="box" class="box3" type="submit">Search the Google Books API</button>
       </form>
     </main>
     <footer></footer>

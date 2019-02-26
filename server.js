@@ -20,12 +20,16 @@ app.get('/', (request,response) => {response.render('pages/index');})
 
 app.post('/searches', dealWithSearches)
 
+app.get('/welcome', (request,response) => {
+  handleError('This is a test error', response);
+})
+
 app.get('*', (request,response) => response.status(404).send('This route does not exist'));
 
 // Error handler
 function handleError(err, res) {
   console.error(err);
-  if (res) res.render('pages/error.ejs', {error:(err)});
+  res.render('pages/error', {error:(err)});
 }
 
 //Helper Functions
@@ -43,7 +47,7 @@ function dealWithSearches(request,response){
   superagent.get(url)
     .then(response => response.body.items.map(bookResult => new Book(bookResult)))
     .then(results => response.render('pages/searches/show',{searchesResults:results}))
-    .catch(error => handleError(error));
+    .catch(error => handleError(error,response));
 }
 
 
