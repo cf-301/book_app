@@ -52,10 +52,20 @@ Actual time needed to complete: 1hr12 min
 -----------------------------------
 Number and name of feature: 4
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 30min
 
-Start time: 
+Start time: 11:45
+
+Finish time: 12:10
+
+Actual time needed to complete: 25 min
+-----------------------------------
+Number and name of feature: 5
+
+Estimate of time needed to complete: 1hr
+
+Start time: 12:10
 
 Finish time: 
 
-Actual time needed to complete:
+Actual time needed to complete: 
