@@ -40,11 +40,11 @@ Finish time: 10:20
 
 Actual time needed to complete: 10 min
 -----------------------------------
-Number and name of feature:
+Number and name of feature: 3
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 45 minutes
 
-Start time: 
+Start time: 10:30
 
 Finish time: 
 

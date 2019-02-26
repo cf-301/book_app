@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <header>
+    <link href="/styles/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/styles/base.css" rel="stylesheet" type="text/css"/>
+  </header>
+  <body>
+    <ul>
+      <% searchesResults.forEach(item => { %>
+        <li>
+          <image class="image" src=<%= item.image %>></div>
+          <div class="title"><%= item.title %></div>
+          <div class="author"><%= item.author %></div>
+          <div class="description"><%= item.description %></div>
+        <li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
