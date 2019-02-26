@@ -1,0 +1,26 @@
+{
+  "name": "book_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiratap/book_app.git"
+  },
+  "author": "Spencer Hirata, Vanessa Wei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shiratap/book_app/issues"
+  },
+  "homepage": "https://github.com/shiratap/book_app#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "superagent": "^4.1.0"
+  }
+}
