@@ -28,10 +28,12 @@ Estimate of time needed to complete: 30 min
 
 Start time: 9:30
 
-Finish time: 
+Finish time: 10:35
 
-Actual time needed to complete: 
+Actual time needed to complete: 35 min
 -----------------------------------
+Number and name of feature: 2
+
 Estimate of time needed to complete: 
 
 Start time: 
@@ -40,6 +42,8 @@ Finish time:
 
 Actual time needed to complete: 
 -----------------------------------
+Number and name of feature:
+
 Estimate of time needed to complete: 
 
 Start time: 
