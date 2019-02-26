@@ -22,6 +22,12 @@ app.post('/searches', dealWithSearches)
 
 app.get('*', (request,response) => response.status(404).send('This route does not exist'));
 
+// Error handler
+function handleError(err, res) {
+  console.error(err);
+  if (res) res.render('pages/error.ejs', {error:(err)});
+}
+
 //Helper Functions
 function dealWithSearches(request,response){
   let url = 'https://www.googleapis.com/books/v1/volumes?q=';
@@ -37,7 +43,9 @@ function dealWithSearches(request,response){
   superagent.get(url)
     .then(response => response.body.items.map(bookResult => new Book(bookResult)))
     .then(results => response.render('pages/searches/show',{searchesResults:results}))
+    .catch(error => handleError(error));
 }
+
 
 
 //Book constructor
