@@ -1,6 +1,6 @@
 # Project Name
 
-**Author**: Your Name Goes Here
+**Author**: Spencer and Vanessa
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
@@ -13,9 +13,7 @@
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
-
-01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource.
+02-26-2019 10:20am - Application now has a functional index.ejs, with POST routes for the book resource.
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -32,13 +30,13 @@ Finish time:
 
 Actual time needed to complete: 
 -----------------------------------
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 30 min
 
-Start time: 
+Start time: 10:10
 
-Finish time: 
+Finish time: 10:20
 
-Actual time needed to complete: 
+Actual time needed to complete: 10 min
 -----------------------------------
 Estimate of time needed to complete: 
 
