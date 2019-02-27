@@ -24,6 +24,7 @@ app.use(express.static('./public'))
 
 //Routes and handlers
 app.get('/', (request,response) => {response.render('pages/index');})
+app.get('/index', getBooks);
 
 app.post('/searches', dealWithSearches)
 
@@ -82,5 +83,14 @@ Book.prototype = {
     return client.query(SQL, values)
   }
 }
+
+function getBooks(reqeust, response){
+  const SQL = `SELECT * FROM books`;
+  return client.query(SQL)
+    .then(result => {
+      response.render('pages/searches/show',{searchesResults:result.rows});
+    })
+}
+
 
 app.listen(PORT,() => console.log(`Listening on ${PORT}`));
