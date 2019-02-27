@@ -66,6 +66,59 @@ Estimate of time needed to complete: 1hr
 
 Start time: 12:10
 
+Finish time: 1:15
+
+Actual time needed to complete: NOT DONE
+-----------------------------------
+
+DAY 2
+Number and name of feature: 1
+
+Estimate of time needed to complete: 1hr 30 min
+
+Start time: 
+
 Finish time: 
 
 Actual time needed to complete: 
+-----------------------------------
+Number and name of feature: 
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+-----------------------------------
+Number and name of feature: 
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+-----------------------------------
+Number and name of feature: 
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+-----------------------------------
+Number and name of feature: 
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+-----------------------------------

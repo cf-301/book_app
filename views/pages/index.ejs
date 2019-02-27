@@ -3,6 +3,8 @@
   <head>
     <link href="/styles/reset.css" rel="stylesheet" type="text/css"/>
     <link href="/styles/base.css" rel="stylesheet" type="text/css"/>
+    <link href="/styles/layout.css" rel="stylesheet" type="text/css"/>
+    <link href="/styles/modules.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
     <header>
@@ -11,20 +13,24 @@
     <main>
       <h4>Seach by Title or Author</h4>
       <form action="/searches" method="post">
-        <input class="box" class="box1" type="text" name="search" placeholder="Enter a title or author" required>
-        <fieldset class="box" class="box2">
+        <br>
+        <input class="box" id="box1" type="text" name="search" placeholder="Enter a title or author" required>
+        <br><br>
+        <fieldset class="box">
           <label for="title">
             <span>Title</span>
             <input type="radio" name="search" value="title" required>
           </label>
         </fieldset>
-        <fieldset class="box" class="box2">
+        <br>
+        <fieldset class="box">
           <label for="author">
             <span>Author</span>
               <input type="radio" name="search" value="author" required>
           </label>
         </fieldset>
-        <button class="box" class="box3" type="submit">Search the Google Books API</button>
+        <br>
+        <button class="box" id="box3" type="submit">Search the Google Books API</button>
       </form>
     </main>
     <footer></footer>
