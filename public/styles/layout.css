@@ -1,0 +1,27 @@
+body{
+  font-size: 20px;
+  background-color:#777777;
+  width: 100%;
+}
+
+main{
+  align-content: center;
+  width:100%;
+}
+
+nav{
+  background-color: black;
+  color:white;
+  height: 70px;
+  font-size:30px;
+  line-height:70px;
+  padding-left: 10px;
+}
+
+h4{
+  color:white;
+  background-color:#555;
+  height:50px;
+  text-align: center;
+  line-height: 50px;
+}

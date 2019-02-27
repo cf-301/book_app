@@ -3,10 +3,17 @@
 //Express dependencies
 const express = require('express');
 const superagent = require('superagent');
+require('dotenv').config();
+const pg = require('pg');
 
+//Express app creation
 const app = express();
 app.use(express.urlencoded({extended:true}));
 
+//PG instantiation
+const client = new pg.Client(process.env.DATABASE_URL)
+client.connect();
+client.on('error', err => console.error(err));
 
 //Port
 const PORT = process.env.PORT || 3000;
@@ -46,7 +53,10 @@ function dealWithSearches(request,response){
   
   superagent.get(url)
     .then(response => response.body.items.map(bookResult => new Book(bookResult)))
-    .then(results => response.render('pages/searches/show',{searchesResults:results}))
+    .then(results => {
+      results.map(book => book.save());
+      response.render('pages/searches/show',{searchesResults:results}
+      )})
     .catch(error => handleError(error,response));
 }
 
@@ -54,11 +64,23 @@ function dealWithSearches(request,response){
 
 //Book constructor
 function Book(data){
-  this.title = data.volumeInfo.title || 'No title found';
-  this.authors = data.volumeInfo.authors || 'No author found';
-  this.image = data.volumeInfo.imageLinks.thumbnail || 'https://i.imgur.com/J5LVHEL.jpg';
-  this.description = data.volumeInfo.description || 'No description found';
+  const placeholderImage = 'https//i.imgur.com/J5LVHEL.jpg';
+
+  this.title = data.volumeInfo.title ? data.volumeInfo.title: 'No title available';
+  this.author = data.volumeInfo.authors ? data.volumeInfo.authors[0] : 'No Author available';
+  this.isbn = data.volumeInfo.industryIdentifiers ? `ISBN_13 ${data.volumeInfo.industryIdentifiers[0].identifier}` : 'No ISBN available';
+  this.image_url = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.smallThumbnail : placeholderImage;
+  this.description = data.volumeInfo.description ?data.volumeInfo.description : 'No description available';
+  this.bookshelf = data.volumeInfo.industryIdentifiers ? `${data.volumeInfo.industryIdentifiers[0].identifier}` : '';
 }
 
+Book.prototype = {
+  save:function() {
+    const SQL = 'INSERT INTO books (title,author,isbn,image_url,description,bookshelf) VALUES ($1,$2,$3,$4,$5,$6);';
+    const values = [this.title, this.author, this.isbn, this.image_url, this.description, this.bookshelf];
+
+    return client.query(SQL, values)
+  }
+}
 
 app.listen(PORT,() => console.log(`Listening on ${PORT}`));
