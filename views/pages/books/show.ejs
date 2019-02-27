@@ -1,0 +1,11 @@
+<ul>
+    Total search results: <%= searchesResults.length %>
+    <% searchesResults.forEach(item => { %>
+      <li>
+        <image class="image" src=<%= item.image_url %>></div>
+        <div class="title"><%= item.title %></div>
+        <div class="author"><%= item.author %></div>
+        <a href="/book/<%= item.id %>"><button>View Details</button></a>
+      <li>
+    <% }) %>
+  </ul>

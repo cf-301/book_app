@@ -22,11 +22,15 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.use(express.static('./public'))
 
-//Routes and handlers
-app.get('/', (request,response) => {response.render('pages/index');})
-app.get('/index', getBooks);
 
-app.post('/searches', dealWithSearches)
+//----------------------------------------------------
+//Routes and handlers
+app.get('/search', (request,response) => {response.render('pages/search');})
+app.get('/', getBooks);
+
+app.post('/searches', dealWithSearches);
+
+app.get('/book/:book_id', getOneBook);
 
 app.get('/welcome', (request,response) => {
   handleError('This is a test error', response);
@@ -34,6 +38,9 @@ app.get('/welcome', (request,response) => {
 
 app.get('*', (request,response) => response.status(404).send('This route does not exist'));
 
+
+
+//----------------------------------------------------
 // Error handler
 function handleError(err, res) {
   console.error(err);
@@ -56,7 +63,7 @@ function dealWithSearches(request,response){
     .then(response => response.body.items.map(bookResult => new Book(bookResult)))
     .then(results => {
       results.map(book => book.save());
-      response.render('pages/searches/show',{searchesResults:results}
+      response.render('pages/index',{path:'searches/show',searchesResults:results}
       )})
     .catch(error => handleError(error,response));
 }
@@ -88,9 +95,18 @@ function getBooks(reqeust, response){
   const SQL = `SELECT * FROM books`;
   return client.query(SQL)
     .then(result => {
-      response.render('pages/searches/show',{searchesResults:result.rows});
+      response.render('pages/index',{path:'./books/show',searchesResults:result.rows});
     })
 }
 
+function getOneBook(request,response){
+  let SQL = `SELECT * FROM books WHERE id=$1;`;
+  let values = [request.params.book_id];
+  return client.query(SQL, values)
+    .then(result => {
+      return response.render('pages/index', {path:'./books/detail',item: result.rows[0]})
+    })
+    .catch(err => handleError(err, response))
+}
 
 app.listen(PORT,() => console.log(`Listening on ${PORT}`));
