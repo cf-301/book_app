@@ -30,6 +30,7 @@ app.get('/', getBooks);
 app.post('/searches', dealWithSearches);
 app.get('/book/:book_id', getOneBook);
 app.post('/add', addBook);
+app.post('/addtoDB', toDB);
 app.get('/welcome', (request,response) => {
   handleError('This is a test error', response);
 })
@@ -82,10 +83,21 @@ function getOneBook(request,response){
     .catch(err => handleError(err, response))
 }
 
+
 function addBook(request,response){
-  response.render('pages/index', {path:'./books/add', item:Book(request.body)})
+  response.render('pages/index', {path:'./books/add', item:request.body})
 }
 
+function toDB(request,response){
+  console.log(request.body);
+  let newBook = new Savedbooks(request.body);
+  
+  const SQL = 'INSERT INTO books (title,author,isbn,image_url,description,bookshelf) VALUES ($1,$2,$3,$4,$5,$6);';
+  const values = Object.values(newBook);
+
+  client.query(SQL, values)
+  response.redirect('/')
+}
 
 //Book constructor
 function Book(data){
@@ -96,7 +108,15 @@ function Book(data){
   this.isbn = data.volumeInfo.industryIdentifiers ? `ISBN_13 ${data.volumeInfo.industryIdentifiers[0].identifier}` : 'No ISBN available';
   this.image_url = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.smallThumbnail : placeholderImage;
   this.description = data.volumeInfo.description ?data.volumeInfo.description : 'No description available';
-  this.bookshelf = "N/A";
+}
+
+function Savedbooks(data) {
+  this.title = data.title;
+  this.author = data.author;
+  this.isbn = data.isbn;
+  this.image_url = data.image_url;
+  this.description = data.description;
+  this.bookshelf = data.bookshelf;
 }
 
 Book.prototype = {
