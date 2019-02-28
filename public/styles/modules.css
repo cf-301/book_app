@@ -21,3 +21,16 @@
   color:white;
   padding-left: 0px;
 }
+
+.hide {
+  /* display : none; */
+}
+
+#icons {
+  float: right;
+  margin-right:10px;
+}
+
+i {
+  color: white;
+}
