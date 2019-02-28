@@ -60,7 +60,7 @@ function dealWithSearches(request,response){
   superagent.get(url)
     .then(response => response.body.items.map(bookResult => new Book(bookResult)))
     .then(results => {
-      response.render('pages/index',{path:'searches/show',searchesResults:results}
+      response.render('pages/index',{path:'searches/show',header:'Search Results',searchesResults:results}
       )})
     .catch(error => handleError(error,response));
 }
@@ -69,7 +69,7 @@ function getBooks(reqeust, response){
   const SQL = `SELECT * FROM books`;
   return client.query(SQL)
     .then(result => {
-      response.render('pages/index',{path:'./books/show',searchesResults:result.rows});
+      response.render('pages/index',{path:'./books/show',header:`(${result.rows.length})Saved Books`,searchesResults:result.rows});
     })
 }
 
@@ -78,14 +78,14 @@ function getOneBook(request,response){
   let values = [request.params.book_id];
   return client.query(SQL, values)
     .then(result => {
-      return response.render('pages/index', {path:'./books/detail',item: result.rows[0]})
+      return response.render('pages/index', {path:'./books/detail',header:`Results for ${result.rows[0].title} by ${result.rows[0].author}`,item: result.rows[0]})
     })
     .catch(err => handleError(err, response))
 }
 
 
 function addBook(request,response){
-  response.render('pages/index', {path:'./books/add', item:request.body})
+  response.render('pages/index', {path:'./books/add',header:'Add book', item:request.body})
 }
 
 function toDB(request,response){
@@ -96,7 +96,7 @@ function toDB(request,response){
   const values = Object.values(newBook);
 
   client.query(SQL, values)
-  response.redirect('/')
+    .then(response.redirect('/'))
 }
 
 //Book constructor
