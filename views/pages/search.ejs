@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="/styles/reset.css" rel="stylesheet" type="text/css"/>
-    <link href="/styles/base.css" rel="stylesheet" type="text/css"/>
-    <link href="/styles/layout.css" rel="stylesheet" type="text/css"/>
-    <link href="/styles/modules.css" rel="stylesheet" type="text/css"/>
-  </head>
+  <%- include('../layout/head') %>
   <body>
     <header>
-      <nav>Best Books!</nav>
+      <%- include('../layout/header') %>
     </header>
     <main>
+      <a href="/search">
       <h4>Seach by Title or Author</h4>
+      </a>
       <form action="/searches" method="post">
         <br>
         <input class="box" id="box1" type="text" name="search" placeholder="Enter a title or author" required>

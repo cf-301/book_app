@@ -1,0 +1,13 @@
+<li>
+  <form class="hide" id="create-form" action="/addtoDB" method="post">
+    <fieldset>
+      <input type="text" name="title" value="<%= item.title%>" placeholder="<%= item.title%>"/>
+      <input type="text" name="author" value="<%= item.author%>" placeholder="<%= item.author%>"/>
+      <input type="text" name="isbn" value="<%= item.isbn%>" placeholder="<%= item.isbn%>"/>
+      <input type="text" name="image_url" value="<%= item.image_url%>" placeholder="<%= item.image_url%>">
+      <textarea name="description" value="<%= item.description%>" cols="30" rows="10"><%- item.description %></textarea>
+      <input type="text"
+      <button type="submit">Add to database</button>
+    </fieldset>
+  </form>
+</li>
