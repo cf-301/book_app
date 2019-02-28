@@ -71,54 +71,26 @@ Finish time: 1:15
 Actual time needed to complete: NOT DONE
 -----------------------------------
 
-DAY 2
-Number and name of feature: 1
+DAY 2 lab 12
+Number and name of feature: add database functionality, book_id
 
-Estimate of time needed to complete: 1hr 30 min
+Estimate of time needed to complete: 4hours
 
-Start time: 
+Start time: 9:30am
 
-Finish time: 
+Finish time: 2:00pm
 
-Actual time needed to complete: 
+Actual time needed to complete: 4.5 hours
+
 -----------------------------------
-Number and name of feature: 
+DAY 3 Lab 13
+Number and name of feature: 1 add book to Database
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 3 hours
 
-Start time: 
+Start time: 10:15am
 
-Finish time: 
+Finish time: 1:15 pm
 
-Actual time needed to complete: 
------------------------------------
-Number and name of feature: 
-
-Estimate of time needed to complete: 
-
-Start time: 
-
-Finish time: 
-
-Actual time needed to complete: 
------------------------------------
-Number and name of feature: 
-
-Estimate of time needed to complete: 
-
-Start time: 
-
-Finish time: 
-
-Actual time needed to complete: 
------------------------------------
-Number and name of feature: 
-
-Estimate of time needed to complete: 
-
-Start time: 
-
-Finish time: 
-
-Actual time needed to complete: 
+Actual time needed to complete: 3 hours
 -----------------------------------
