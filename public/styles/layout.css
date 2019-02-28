@@ -25,3 +25,9 @@ h4{
   text-align: center;
   line-height: 50px;
 }
+
+li{
+  align-content: center;
+  background-color: lightgray;
+  margin: 10px;
+}

@@ -27,15 +27,12 @@ app.use(express.static('./public'))
 //Routes and handlers
 app.get('/search', (request,response) => {response.render('pages/search');})
 app.get('/', getBooks);
-
 app.post('/searches', dealWithSearches);
-
 app.get('/book/:book_id', getOneBook);
-
+app.post('/add', addBook);
 app.get('/welcome', (request,response) => {
   handleError('This is a test error', response);
 })
-
 app.get('*', (request,response) => response.status(404).send('This route does not exist'));
 
 
@@ -62,33 +59,9 @@ function dealWithSearches(request,response){
   superagent.get(url)
     .then(response => response.body.items.map(bookResult => new Book(bookResult)))
     .then(results => {
-      results.map(book => book.save());
       response.render('pages/index',{path:'searches/show',searchesResults:results}
       )})
     .catch(error => handleError(error,response));
-}
-
-
-
-//Book constructor
-function Book(data){
-  const placeholderImage = 'https//i.imgur.com/J5LVHEL.jpg';
-
-  this.title = data.volumeInfo.title ? data.volumeInfo.title: 'No title available';
-  this.author = data.volumeInfo.authors ? data.volumeInfo.authors[0] : 'No Author available';
-  this.isbn = data.volumeInfo.industryIdentifiers ? `ISBN_13 ${data.volumeInfo.industryIdentifiers[0].identifier}` : 'No ISBN available';
-  this.image_url = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.smallThumbnail : placeholderImage;
-  this.description = data.volumeInfo.description ?data.volumeInfo.description : 'No description available';
-  this.bookshelf = data.volumeInfo.industryIdentifiers ? `${data.volumeInfo.industryIdentifiers[0].identifier}` : '';
-}
-
-Book.prototype = {
-  save:function() {
-    const SQL = 'INSERT INTO books (title,author,isbn,image_url,description,bookshelf) VALUES ($1,$2,$3,$4,$5,$6);';
-    const values = [this.title, this.author, this.isbn, this.image_url, this.description, this.bookshelf];
-
-    return client.query(SQL, values)
-  }
 }
 
 function getBooks(reqeust, response){
@@ -108,5 +81,32 @@ function getOneBook(request,response){
     })
     .catch(err => handleError(err, response))
 }
+
+function addBook(request,response){
+  response.render('pages/index', {path:'./books/add', item:Book(request.body)})
+}
+
+
+//Book constructor
+function Book(data){
+  const placeholderImage = 'http://duncanlock.net/images/posts/better-figures-images-plugin-for-pelican/dummy-200x200.png';
+
+  this.title = data.volumeInfo.title ? data.volumeInfo.title: 'No title available';
+  this.author = data.volumeInfo.authors ? data.volumeInfo.authors[0] : 'No Author available';
+  this.isbn = data.volumeInfo.industryIdentifiers ? `ISBN_13 ${data.volumeInfo.industryIdentifiers[0].identifier}` : 'No ISBN available';
+  this.image_url = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.smallThumbnail : placeholderImage;
+  this.description = data.volumeInfo.description ?data.volumeInfo.description : 'No description available';
+  this.bookshelf = "N/A";
+}
+
+Book.prototype = {
+  save:function() {
+    const SQL = 'INSERT INTO books (title,author,isbn,image_url,description,bookshelf) VALUES ($1,$2,$3,$4,$5,$6);';
+    const values = [this.title, this.author, this.isbn, this.image_url, this.description, this.bookshelf];
+
+    return client.query(SQL, values)
+  }
+}
+
 
 app.listen(PORT,() => console.log(`Listening on ${PORT}`));
