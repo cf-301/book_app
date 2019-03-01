@@ -29,8 +29,7 @@ app.get('/search', (request,response) => {response.render('pages/search');})
 app.get('/', getBooks);
 app.post('/searches', dealWithSearches);
 app.get('/book/:book_id', getOneBook);
-app.post('/add', addBook);
-app.post('/addtoDB', toDB);
+app.post('/add', toDB);
 app.get('/welcome', (request,response) => {
   handleError('This is a test error', response);
 })
@@ -60,7 +59,7 @@ function dealWithSearches(request,response){
   superagent.get(url)
     .then(response => response.body.items.map(bookResult => new Book(bookResult)))
     .then(results => {
-      response.render('pages/index',{path:'searches/show',header:'Search Results',searchesResults:results}
+      response.render('pages/index',{path:'searches/show',header:'Search Results',counter:0,searchesResults:results}
       )})
     .catch(error => handleError(error,response));
 }
@@ -81,11 +80,6 @@ function getOneBook(request,response){
       return response.render('pages/index', {path:'./books/detail',header:`Results for ${result.rows[0].title} by ${result.rows[0].author}`,item: result.rows[0]})
     })
     .catch(err => handleError(err, response))
-}
-
-
-function addBook(request,response){
-  response.render('pages/index', {path:'./books/add',header:'Add book', item:request.body})
 }
 
 function toDB(request,response){
