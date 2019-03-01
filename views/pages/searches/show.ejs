@@ -1,18 +1,24 @@
-<% searchesResults.forEach(item => { %>
+<% searchesResults.forEach(item => { counter++ %>
   <li>
-    <image class="image" src=<%= item.image_url %>></div>
-    <div class="title"><%= item.title %></div>
-    <div class="author"><%= item.author %></div>
-    <div class="description"><%= item.description %></div>
-    <form class="hide" id="create-form" action="/add" method="post">
-      <fieldset>
-        <input type="hidden" name="title" value="<%= item.title%>"/>
-        <input type="hidden" name="author" value="<%= item.author%>"/>
-        <input type="hidden" name="description" value="<%= item.description%>"/>
-        <input type="hidden" name="image_url" value="<%= item.image_url%>"/>
-        <input type="hidden" name="isbn" value="<%= item.isbn%>"/>
-        <button type="submit">Select this book</button>
-      </fieldset>
-    </form>
+    <div class="show">
+      <image class="image" src=<%= item.image_url %>/>
+      <div class="title"><%= item.title %></div>
+      <div class="author"><%= item.author %></div>
+      <div class="description"><%= item.description %></div>
+      <button class="clickable">Select this book</button>
+    </div>
+    <div class="hide">
+      <form class="create-form" action="/add" method="post">
+        <fieldset>
+          <input type="text" name="title" value="<%= item.title%>" placeholder="<%= item.title%>" readonly/>
+          <input type="text" name="author" value="<%= item.author%>" placeholder="<%= item.author%>" readonly/>
+          <input type="text" name="isbn" value="<%= item.isbn%>" placeholder="<%= item.isbn%>" readonly/>
+          <input type="text" name="image_url" value="<%= item.image_url%>" placeholder="<%= item.image_url%>" readonly>
+          <textarea name="description" value="<%= item.description%>" cols="30" rows="10" readonly><%- item.description %></textarea>
+          <input type="text" name="bookshelf" placeholder="bookshelf">
+          <button type="submit">Add to database</button>
+        </fieldset>
+      </form>
+    </div>
   </li>
 <% }) %>
